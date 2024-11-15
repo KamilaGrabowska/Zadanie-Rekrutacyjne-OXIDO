@@ -2,59 +2,46 @@
 
 ## Opis
 
-Aplikacja stworzona w JavaScript łączy się z API OpenAI, aby przetworzyć artykuł tekstowy w formie HTML. Aplikacja wykonuje następujące kroki:
+Aplikacja stworzona w JavaScript integruje się z API OpenAI, aby przetwarzać artykuły w formacie tekstowym na kod HTML. Proces generowania HTML obejmuje przekształcenie tekstu artykułu do odpowiedniej struktury HTML, wstawienie miejsc na grafiki oraz dodanie podpisów. Ostateczny wynik zapisywany jest w pliku HTML.
 
-1. Odczytuje artykuł w formacie tekstowym (plik `.txt`).
-2. Wysyła zawartość artykułu do API OpenAI z odpowiednim promptem.
-3. Otrzymuje wygenerowany kod HTML, który zawiera:
-   - Strukturalizację treści z użyciem tagów HTML.
-   - Miejsca na grafiki oznaczone tagiem `<img src="image_placeholder.jpg" alt="Prompt">`.
-   - Podpisy pod grafikami.
-4. Zapisuje wygenerowany kod HTML do pliku `artykul.html`.
+### Przebieg działania aplikacji:
 
-Aplikacja nie generuje żadnego kodu CSS ani JavaScript — jej zadaniem jest jedynie przekształcenie artykułu w odpowiednią strukturę HTML.
+1. Odczyt artykułu w formacie `.txt` z lokalnego pliku.
+2. Przesłanie tekstu do OpenAI API w celu wygenerowania odpowiedniej struktury HTML.
+3. Otrzymanie kodu HTML, który zawiera:
+   - Strukturalizację treści (nagłówki, akapity).
+   - Miejsca na obrazy z tagiem `<img src="image_placeholder.jpg" alt="Prompt">`.
+   - Podpisy pod obrazkami.
+4. Zapisanie wynikowego kodu HTML do pliku `public/podglad.html`.
+
+Aplikacja nie generuje CSS ani JavaScript — jej celem jest tylko przekształcenie artykułu tekstowego na HTML.
+
+---
 
 ## Funkcjonalności
 
-- **Odczyt artykułu**: Program odczytuje artykuł z pliku tekstowego.
-- **Integracja z OpenAI**: Aplikacja łączy się z API OpenAI, aby przetworzyć artykuł i wygenerować kod HTML.
-- **Generowanie HTML**: Wygenerowany kod HTML zawiera:
-  - Odpowiednią strukturalizację treści (nagłówki, akapity).
-  - Miejsca na grafiki oznaczone placeholderami.
-  - Podpisy pod obrazkami w tagach `<figcaption>`.
-- **Zapis HTML**: Ostateczny plik HTML jest zapisywany w `artykul.html`.
+- **Odczyt artykułu**: Program wczytuje tekst artykułu z pliku `.txt`.
+- **Generowanie HTML**: Na podstawie artykułu API OpenAI generuje HTML, w tym:
+  - Nagłówki, akapity i inne elementy strukturalne.
+  - Miejsca na obrazy.
+  - Podpisy do obrazków.
+- **Zapis HTML**: Wygenerowany plik HTML jest zapisywany w katalogu `public` jako `podglad.html`.
+
+---
 
 ## Wymagania
 
 - **Node.js** (wersja 14.x lub nowsza) – możesz pobrać i zainstalować z [oficjalnej strony Node.js](https://nodejs.org/).
-- **Klucz API OpenAI** – potrzebny do uzyskania dostępu do API. Możesz go uzyskać, rejestrując się na stronie [OpenAI](https://platform.openai.com/).
+- **Klucz API OpenAI** – wymagany do uzyskania dostępu do API OpenAI. Możesz go uzyskać, rejestrując się na stronie [OpenAI](https://platform.openai.com/).
 
-## Instalacja
+---
 
-1. **Pobierz repozytorium**:
-   Skopiuj to repozytorium na swój komputer:
+## Instalacja i uruchomienie
 
-   ```bash
-   git clone https://github.com/username/nazwa-repozytorium.git
-   cd nazwa-repozytorium
+### 1. Skopiuj repozytorium
 
-2. **Zainstaluj zależności**:
-   ```bash
-   npm install
-   ```
+Aby pobrać repozytorium na swoje urządzenie, użyj poniższego polecenia:
 
-3. **Ustawienie klucza API**:
-
-
-4. **Uruchom aplikację**:
-   ```bash
-   node index.js
-   ```
- ## Konfiguracja pliku artykułu
-
-  Aby aplikacja mogła przetworzyć artykuł, musisz umieścić w katalogu głównym projektu plik o nazwie `artykul.txt`, zawierający tekst artykułu, który chcesz przetworzyć.
-
- ### Przykładowy plik artykułu
-
-  Jeśli nie masz jeszcze swojego artykułu, możesz stworzyć przykładowy plik tekstowy. Przykładowa treść pliku `artykul.txt` może wyglądać tak:
-
+```bash
+git clone https://github.com/username/nazwa-repozytorium.git
+cd nazwa-repozytorium
