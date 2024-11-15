@@ -1,0 +1,60 @@
+# Aplikacja do generowania HTML z artykułów przy użyciu OpenAI
+
+## Opis
+
+Aplikacja stworzona w JavaScript łączy się z API OpenAI, aby przetworzyć artykuł tekstowy w formie HTML. Aplikacja wykonuje następujące kroki:
+
+1. Odczytuje artykuł w formacie tekstowym (plik `.txt`).
+2. Wysyła zawartość artykułu do API OpenAI z odpowiednim promptem.
+3. Otrzymuje wygenerowany kod HTML, który zawiera:
+   - Strukturalizację treści z użyciem tagów HTML.
+   - Miejsca na grafiki oznaczone tagiem `<img src="image_placeholder.jpg" alt="Prompt">`.
+   - Podpisy pod grafikami.
+4. Zapisuje wygenerowany kod HTML do pliku `artykul.html`.
+
+Aplikacja nie generuje żadnego kodu CSS ani JavaScript — jej zadaniem jest jedynie przekształcenie artykułu w odpowiednią strukturę HTML.
+
+## Funkcjonalności
+
+- **Odczyt artykułu**: Program odczytuje artykuł z pliku tekstowego.
+- **Integracja z OpenAI**: Aplikacja łączy się z API OpenAI, aby przetworzyć artykuł i wygenerować kod HTML.
+- **Generowanie HTML**: Wygenerowany kod HTML zawiera:
+  - Odpowiednią strukturalizację treści (nagłówki, akapity).
+  - Miejsca na grafiki oznaczone placeholderami.
+  - Podpisy pod obrazkami w tagach `<figcaption>`.
+- **Zapis HTML**: Ostateczny plik HTML jest zapisywany w `artykul.html`.
+
+## Wymagania
+
+- **Node.js** (wersja 14.x lub nowsza) – możesz pobrać i zainstalować z [oficjalnej strony Node.js](https://nodejs.org/).
+- **Klucz API OpenAI** – potrzebny do uzyskania dostępu do API. Możesz go uzyskać, rejestrując się na stronie [OpenAI](https://platform.openai.com/).
+
+## Instalacja
+
+1. **Pobierz repozytorium**:
+   Skopiuj to repozytorium na swój komputer:
+
+   ```bash
+   git clone https://github.com/username/nazwa-repozytorium.git
+   cd nazwa-repozytorium
+
+2. **Zainstaluj zależności**:
+   ```bash
+   npm install
+   ```
+
+3. **Ustawienie klucza API**:
+
+
+4. **Uruchom aplikację**:
+   ```bash
+   node index.js
+   ```
+ ## Konfiguracja pliku artykułu
+
+  Aby aplikacja mogła przetworzyć artykuł, musisz umieścić w katalogu głównym projektu plik o nazwie `artykul.txt`, zawierający tekst artykułu, który chcesz przetworzyć.
+
+ ### Przykładowy plik artykułu
+
+  Jeśli nie masz jeszcze swojego artykułu, możesz stworzyć przykładowy plik tekstowy. Przykładowa treść pliku `artykul.txt` może wyglądać tak:
+
