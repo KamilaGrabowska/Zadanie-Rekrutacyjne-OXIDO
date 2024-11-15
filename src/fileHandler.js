@@ -1,12 +1,20 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs').promises;
 
-function readFile(filePath) {
-    return fs.promises.readFile(filePath, 'utf-8');
+async function writeFile(filePath, data) {
+    try {
+        await fs.writeFile(filePath, data, 'utf-8');
+    } catch (error) {
+        throw new Error(`Nie udało się zapisać pliku: ${error.message}`);
+    }
 }
 
-function writeFile(filePath, content) {
-    return fs.promises.writeFile(filePath, content, 'utf-8');
+async function readFile(filePath) {
+    try {
+        const data = await fs.readFile(filePath, 'utf-8');
+        return data;
+    } catch (error) {
+        throw new Error(`Nie udało się odczytać pliku: ${error.message}`);
+    }
 }
 
 module.exports = { readFile, writeFile };

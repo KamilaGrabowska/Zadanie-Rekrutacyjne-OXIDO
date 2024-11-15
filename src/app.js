@@ -8,6 +8,8 @@ async function processArticle() {
         console.log('Artykuł odczytany:', articleText);
 
         const prompt = articlePrompt(articleText);
+        console.log('Prompt do OpenAI:', prompt);
+
         const generatedHtml = await generateArticle(prompt);
         console.log('Wygenerowany artykuł HTML:', generatedHtml);
 

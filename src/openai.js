@@ -1,26 +1,26 @@
-const axios = require('axios');
+const { Configuration, OpenAIApi } = require('openai');
+require('dotenv').config();
+
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
 
 async function generateArticle(prompt) {
-    const apiKey = process.env.OPENAI_API_KEY;
-    const url = 'https://api.openai.com/v1/completions';
-
     try {
-        const response = await axios.post(url, {
-            model: 'text-davinci-003',
-            prompt: prompt,
-            max_tokens: 1000,
+        const response = await openai.createChatCompletion({
+            model: 'gpt-3.5-turbo',
+            messages: [
+                { role: 'system', content: 'You are a helpful assistant.' },
+                { role: 'user', content: prompt }
+            ],
+            max_tokens: 1500,
             temperature: 0.7,
-        }, {
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Content-Type': 'application/json'
-            }
         });
-
-        return response.data.choices[0].text;
+        return response.data.choices[0].message.content;
     } catch (error) {
-        console.error('Error generating article:', error);
-        throw error;
+        throw new Error(`Błąd OpenAI: ${error.message}`);
     }
 }
 
